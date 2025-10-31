@@ -1,0 +1,57 @@
+{{ block title }}
+    Experiment Completed - Your Payment
+{{ endblock }}
+
+{{ block content }}
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Task Selection Result</h4>
+        <p>Among the two tasks you completed (binary-choice task and multi-choice task),
+        the <strong>{{ selected_part }}-choice task</strong> has been randomly selected to determine your bonus payment.</p>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Payment Breakdown:</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Participation Fee
+                    <span class="badge bg-primary rounded-pill">$2.00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Task Bonus
+                    <span class="badge bg-success rounded-pill">{{ bonus }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Total Payment</strong>
+                    <span class="badge bg-warning rounded-pill">{{ total_payoff }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</div>
+{{ endblock }}
+
+{{ block styles }}
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .badge {
+        font-size: 1rem;
+    }
+    .list-group-item {
+        font-size: 1.1rem;
+    }
+    .alert {
+        font-size: 1.1rem;
+    }
+    strong {
+        color: #2c3e50;
+    }
+</style>
+{{ endblock }}

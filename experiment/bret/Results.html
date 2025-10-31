@@ -1,0 +1,188 @@
+{{ block title }}
+   Task Results & Payment
+{{ endblock }}
+
+{{ block content }}
+<div class="results-container">
+   <!-- 决策总结 -->
+   <div class="decision-summary">
+       <h5><i class="fas fa-box-open"></i> Your Choices</h5>
+       <div class="boxes-opened">
+           Boxes Opened: <span class="number-highlight">{{boxes_collected}}</span>
+       </div>
+   </div>
+
+   <!-- 结果展示 -->
+   <div class="result-card {{ if bomb }}result-negative{{ else }}result-positive{{ endif }}">
+       <div class="result-icon">
+           {{ if bomb }}
+           <i class="fas fa-times-circle"></i>
+           {{ else }}
+           <i class="fas fa-check-circle"></i>
+           {{ endif }}
+       </div>
+
+       {{ if bomb }}
+       <div class="result-content">
+           <h6>Unlucky Result</h6>
+           <p>The empty box was among your {{boxes_collected}} collected boxes.</p>
+           <div class="payoff-amount negative">
+               Payment for this task: $0.00
+           </div>
+           <div class="result-explanation">
+               Since the empty box was opened, you receive no payment for this task.
+           </div>
+       </div>
+       {{ else }}
+       <div class="result-content">
+           <h6>Lucky Result</h6>
+           <p>Your collected boxes did not contain the empty box.</p>
+           <div class="calculation-details">
+               <div class="calc-item">
+                   <span>Boxes Collected:</span>
+                   <span>{{boxes_collected}}</span>
+               </div>
+               <div class="calc-item">
+                   <span>Value per Box:</span>
+                   <span>{{box_value}}</span>
+               </div>
+           </div>
+           <div class="payoff-amount positive">
+               Payment for this task: <strong>{{payoff}}</strong>
+           </div>
+       </div>
+       {{ endif }}
+   </div>
+
+   <!-- 下一步提示 -->
+   <div class="next-section">
+       <div class="alert alert-info">
+           <i class="fas fa-arrow-right"></i>
+           Click "Next" to proceed to the next section of the experiment.
+       </div>
+       {{ next_button }}
+   </div>
+</div>
+
+<style>
+   .results-container {
+       max-width: 600px;
+       margin: 0 auto;
+       padding: 20px;
+   }
+
+   .decision-summary {
+       text-align: center;
+       margin-bottom: 30px;
+       padding: 20px;
+       background: #f8f9fa;
+       border-radius: 8px;
+   }
+
+   .boxes-opened {
+       font-size: 1.2em;
+       margin-top: 10px;
+   }
+
+   .number-highlight {
+       font-size: 1.4em;
+       font-weight: bold;
+       color: #3498db;
+   }
+
+   .result-card {
+       background: white;
+       padding: 20px;  /* 减小内边距 */
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       margin-bottom: 30px;
+       text-align: center;
+       display: flex;  /* 使用flex布局 */
+       align-items: center;  /* 垂直居中对齐 */
+       gap: 20px;  /* 元素之间的间距 */
+   }
+
+   .result-negative {
+       border-left: 5px solid #dc3545;
+   }
+
+   .result-positive {
+       border-left: 5px solid #28a745;
+   }
+
+   .result-icon {
+       font-size: 40px;  /* 稍微减小图标大小 */
+       margin-bottom: 0;  /* 移除底部边距 */
+       flex-shrink: 0;  /* 防止图标缩小 */
+   }
+
+   .result-negative .result-icon {
+       color: #dc3545;
+   }
+
+   .result-positive .result-icon {
+       color: #28a745;
+   }
+
+   .result-content h6 {
+       color: #2c3e50;
+       margin-bottom: 15px;
+   }
+
+   .calculation-details {
+       background: #f8f9fa;
+       padding: 15px;
+       border-radius: 5px;
+       margin: 15px 0;
+   }
+
+   .calc-item {
+       display: flex;
+       justify-content: space-between;
+       padding: 5px 0;
+   }
+
+   .payoff-amount {
+       font-size: 1.5em;
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 5px;
+   }
+
+   .payoff-amount.negative {
+       background: #fff5f5;
+       color: #dc3545;
+   }
+
+   .payoff-amount.positive {
+       background: #f0fff4;
+       color: #28a745;
+   }
+
+   .result-explanation {
+       color: #666;
+       font-style: italic;
+   }
+
+   .next-section {
+       text-align: center;
+       margin-top: 30px;
+   }
+
+   .alert-info {
+       background: #e8f4fd;
+       border: none;
+       color: #2c3e50;
+   }
+
+   .fas {
+       margin-right: 8px;
+   }
+
+   @media (max-width: 576px) {
+       .payoff-amount {
+           font-size: 1.3em;
+       }
+   }
+</style>
+{{ endblock }}

@@ -1,0 +1,227 @@
+{{ block title }}
+   Binary-Choice Task Example
+{{ endblock }}
+
+{{ block content }}
+<div class="task-container">
+   <!-- 示例介绍 -->
+   <div class="example-intro">
+       <h5><i class="fas fa-book-open"></i> Sample Question</h5>
+       <p class="intro-text">In this section, you will make ten choices. Below is a sample question to help you understand the format. You do not need to answer this sample.</p>
+   </div>
+
+   <!-- 示例问题 -->
+   <div class="sample-question">
+       <div class="question-header">Which one do you prefer:</div>
+       <div class="options-container">
+           <div class="option">
+               <div class="option-label">Option A</div>
+               <div class="option-content">
+                   <div class="outcome-row">
+                       <div class="condition">If die shows 1-3:</div>
+                       <div class="amount">$5.00</div>
+                   </div>
+                   <div class="outcome-row">
+                       <div class="condition">If die shows 4-10:</div>
+                       <div class="amount">$4.00</div>
+                   </div>
+               </div>
+           </div>
+           <div class="option">
+               <div class="option-label">Option B</div>
+               <div class="option-content">
+                   <div class="outcome-row">
+                       <div class="condition">If die shows 1-3:</div>
+                       <div class="amount">$9.63</div>
+                   </div>
+                   <div class="outcome-row">
+                       <div class="condition">If die shows 4-10:</div>
+                       <div class="amount">$0.25</div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <!-- 结果确定流程 -->
+   <div class="determination-process">
+       <h6><i class="fas fa-random"></i> How Your Payment Will Be Determined</h6>
+       <div class="process-steps">
+           <div class="step">
+               <div class="step-number">1</div>
+               <div class="step-content">
+                   <strong>Make Your Choices:</strong> You will answer ten similar questions
+               </div>
+           </div>
+           <div class="step">
+               <div class="step-number">2</div>
+               <div class="step-content">
+                   <strong>Question Selection:</strong> We will roll the die to randomly select one of your ten decisions
+               </div>
+           </div>
+           <div class="step">
+               <div class="step-number">3</div>
+               <div class="step-content">
+                   <strong>Payment Determination:</strong> We will roll the die again to determine your payoff based on your choice
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <!-- 重要提示 -->
+   <div class="important-summary">
+       <div class="alert alert-info">
+           <i class="fas fa-exclamation-circle"></i>
+           <strong>Key Point:</strong>
+           <p>You will make ten decisions, but only one will ultimately affect your earnings. You will not know in advance which decision will be used.</p>
+       </div>
+   </div>
+
+   <!-- 开始按钮部分 -->
+   <div class="start-section">
+       <p>Click "Next" to begin the binary-choice task.</p>
+
+       <div class="timer-notice" id="timer-text">
+           The Next button will appear in <span id="timer">15</span> seconds
+       </div>
+
+       <button class="btn btn-primary btn-lg" style="display: none" id="next-button">Next</button>
+   </div>
+</div>
+
+<style>
+   .task-container {
+       max-width: 800px;
+       margin: 0 auto;
+       padding: 20px;
+   }
+
+   .example-intro {
+       text-align: center;
+       margin-bottom: 30px;
+   }
+
+   .intro-text {
+       color: #2c3e50;
+   }
+
+   .sample-question {
+       background: white;
+       padding: 25px;
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       margin-bottom: 30px;
+   }
+
+   .question-header {
+       font-size: 1.1em;
+       font-weight: bold;
+       margin-bottom: 20px;
+       color: #2c3e50;
+   }
+
+   .options-container {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 20px;
+   }
+
+   .option {
+       background: #f8f9fa;
+       border-radius: 5px;
+       padding: 15px;
+       border: 1px solid #dee2e6;
+   }
+
+   .option-label {
+       text-align: center;
+       font-weight: bold;
+       color: #3498db;
+       margin-bottom: 10px;
+       padding-bottom: 5px;
+       border-bottom: 2px solid #eee;
+   }
+
+   .outcome-row {
+       display: flex;
+       justify-content: space-between;
+       margin: 10px 0;
+       padding: 5px;
+       background: white;
+       border-radius: 3px;
+   }
+
+   .amount {
+       font-weight: bold;
+       color: #2c3e50;
+   }
+
+   .process-steps {
+       margin: 20px 0;
+   }
+
+   .step {
+       display: flex;
+       align-items: start;
+       margin: 15px 0;
+       background: white;
+       padding: 15px;
+       border-radius: 5px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+   }
+
+   .step-number {
+       background: #3498db;
+       color: white;
+       width: 25px;
+       height: 25px;
+       border-radius: 50%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       margin-right: 15px;
+       flex-shrink: 0;
+   }
+
+   .important-summary {
+       margin: 30px 0;
+   }
+
+   .start-section {
+       text-align: center;
+       margin-top: 30px;
+   }
+
+   .timer-notice {
+       display: inline-block;
+       padding: 10px 20px;
+       background: #f8f9fa;
+       border-radius: 5px;
+       margin: 15px 0;
+   }
+
+   @media (max-width: 576px) {
+       .options-container {
+           grid-template-columns: 1fr;
+       }
+   }
+</style>
+
+<script>
+   let timeLeft = 15;
+   const timerElement = document.getElementById('timer');
+   const nextButton = document.getElementById('next-button');
+   const timerText = document.getElementById('timer-text');
+
+   const timer = setInterval(() => {
+       timeLeft--;
+       timerElement.textContent = timeLeft;
+
+       if (timeLeft <= 0) {
+           clearInterval(timer);
+           nextButton.style.display = 'block';
+           timerText.style.display = 'none';
+       }
+   }, 1000);
+</script>
+{{ endblock }}

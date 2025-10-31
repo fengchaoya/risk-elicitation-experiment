@@ -1,0 +1,160 @@
+{{ block title }}
+   Attention Check Results
+{{ endblock }}
+
+{{ block content }}
+<div class="results-container">
+   {% if player.round_number < C.NUM_ATTENTION_CHECK_TRIES %}
+   <!-- 第一次失败 -->
+   <div class="result-card first-attempt">
+       <div class="icon-section">
+           <i class="fas fa-exclamation-circle"></i>
+       </div>
+
+       <div class="message-section">
+           <h5>Attention Check Not Passed</h5>
+
+           <div class="alert alert-warning">
+               <div class="message-content">
+                   <p><strong>Your responses to the attention check questions were not correct.</strong></p>
+                   <p>You will have another opportunity to:</p>
+                   <ul>
+                       <li>Review the instructions carefully</li>
+                       <li>Try the attention check questions again</li>
+                   </ul>
+                   <div class="attempts-info">
+                       <i class="fas fa-redo-alt"></i>
+                       Remaining attempts: 1
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <div class="action-section">
+           {{ next_button }}
+       </div>
+   </div>
+
+   {% else %}
+   <!-- 最后一次失败 -->
+   <div class="result-card final-attempt">
+       <div class="icon-section">
+           <i class="fas fa-times-circle"></i>
+       </div>
+
+       <div class="message-section">
+           <h5>Maximum Attempts Reached</h5>
+
+           <div class="alert alert-danger">
+               <div class="message-content">
+                   <p><strong>Unfortunately, you have not passed the attention check after {{ C.NUM_ATTENTION_CHECK_TRIES }} attempts.</strong></p>
+                   <p>As per the experiment rules:</p>
+                   <ul>
+                       <li>You cannot continue with the experiment</li>
+                       <li>Please close the experiment window</li>
+                   </ul>
+               </div>
+           </div>
+       </div>
+   </div>
+   {% endif %}
+</div>
+
+<style>
+   .results-container {
+       max-width: 600px;
+       margin: 40px auto;
+       padding: 20px;
+   }
+
+   .result-card {
+       background: white;
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       padding: 30px;
+       text-align: center;
+   }
+
+   .icon-section {
+       margin-bottom: 20px;
+   }
+
+   .first-attempt .icon-section i {
+       color: #f39c12;
+       font-size: 48px;
+   }
+
+   .final-attempt .icon-section i {
+       color: #e74c3c;
+       font-size: 48px;
+   }
+
+   .message-section h5 {
+       color: #2c3e50;
+       margin-bottom: 20px;
+   }
+
+   .message-content {
+       text-align: left;
+   }
+
+   .message-content p {
+       margin-bottom: 15px;
+   }
+
+   .message-content ul {
+       margin: 15px 0;
+       padding-left: 20px;
+   }
+
+   .message-content li {
+       margin: 8px 0;
+   }
+
+   .attempts-info {
+       background: #f8f9fa;
+       padding: 10px 15px;
+       border-radius: 5px;
+       margin-top: 15px;
+       display: inline-block;
+   }
+
+   .attempts-info i {
+       margin-right: 8px;
+       color: #3498db;
+   }
+
+   .alert {
+       margin: 20px 0;
+       border: none;
+   }
+
+   .alert-warning {
+       background-color: #fff3cd;
+       color: #856404;
+   }
+
+   .alert-danger {
+       background-color: #f8d7da;
+       color: #721c24;
+   }
+
+   .action-section {
+       margin-top: 25px;
+   }
+
+   .btn {
+       padding: 10px 30px;
+   }
+
+   @keyframes pulse {
+       0% { transform: scale(1); }
+       50% { transform: scale(1.05); }
+       100% { transform: scale(1); }
+   }
+
+   .first-attempt .icon-section i {
+       animation: pulse 2s infinite;
+   }
+</style>
+{{ endblock }}

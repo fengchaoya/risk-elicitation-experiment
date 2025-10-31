@@ -1,0 +1,184 @@
+{{ block title }}
+   Attention Check Questions
+{{ endblock }}
+
+{{ block content }}
+<div class="attention-container">
+   <!-- 支付说明示例 -->
+   <div class="payment-example">
+       <h5><i class="fas fa-info-circle"></i> Payment Example</h5>
+       <div class="example-cards">
+           <div class="example-card success">
+               <div class="scenario-header">Scenario 1: Lucky Choice</div>
+               <ul>
+                   <li>Boxes opened: 50</li>
+                   <li>Empty box: Not collected</li>
+                   <li>Payment calculation: 50 boxes × $0.10 = $5.00</li>
+                   <li class="result">Final Payment: <strong>$5.00</strong></li>
+               </ul>
+           </div>
+           <div class="example-card failure">
+               <div class="scenario-header">Scenario 2: Unlucky Choice</div>
+               <ul>
+                   <li>Boxes opened: 50</li>
+                   <li>Empty box: Collected</li>
+                   <li>Payment calculation: All boxes worth $0</li>
+                   <li class="result">Final Payment: <strong>$0.00</strong></li>
+               </ul>
+           </div>
+       </div>
+   </div>
+
+   <!-- 注意力检查说明 -->
+   <div class="attention-intro">
+       <div class="alert alert-info">
+           <p>Before proceeding to the multi-choice task, please answer three attention check questions. While these questions do not affect your payment directly, answering them correctly is required to qualify for the decision bonus.</p>
+       </div>
+   </div>
+
+   <!-- 问题部分 -->
+   <div class="questions-section">
+       <div class="question-item">
+           <div class="question-number">1</div>
+           <div class="question-content">
+               <p>Imagine a participant opens 40 boxes. The empty box is <strong>not contained</strong> in those boxes opened.</p>
+               {{ formfield player.attention1 }}
+           </div>
+       </div>
+
+       <div class="question-item">
+           <div class="question-number">2</div>
+           <div class="question-content">
+               <p>Tom participates in the experiment and opens 80 boxes. The empty box is <strong>contained</strong> in those boxes opened.</p>
+               {{ formfield player.attention2 }}
+           </div>
+       </div>
+
+       <div class="question-item">
+           <div class="question-number">3</div>
+           <div class="question-content">
+               <p>Mary participates in the experiment and opens 60 boxes. The empty box is <strong>contained</strong> in those boxes opened.</p>
+               {{ formfield player.attention3 }}
+           </div>
+       </div>
+   </div>
+
+   <!-- 警告提示 -->
+   <div class="warning-notice">
+       <div class="alert alert-secondary">
+           <strong><i class="fas fa-exclamation-circle"></i> Note:</strong>
+           You cannot revisit previous pages once you click "Next", so please ensure your answers are correct before proceeding.
+       </div>
+   </div>
+
+   <!-- 下一步按钮 -->
+   <div class="next-section">
+       {{ next_button }}
+   </div>
+</div>
+
+<style>
+   .attention-container {
+       max-width: 800px;
+       margin: 0 auto;
+       padding: 20px;
+   }
+
+   .payment-example {
+       margin-bottom: 30px;
+   }
+
+   .example-cards {
+       display: grid;
+       gap: 20px;
+       margin: 20px 0;
+   }
+
+   .example-card {
+       background: white;
+       padding: 20px;
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+   }
+
+   .example-card.success {
+       border-left: 5px solid #28a745;
+   }
+
+   .example-card.failure {
+       border-left: 5px solid #dc3545;
+   }
+
+   .scenario-header {
+       font-weight: bold;
+       margin-bottom: 10px;
+       color: #2c3e50;
+   }
+
+   .example-card ul {
+       list-style: none;
+       padding-left: 0;
+   }
+
+   .example-card li {
+       margin: 8px 0;
+   }
+
+   .example-card .result {
+       margin-top: 15px;
+       padding-top: 10px;
+       border-top: 1px solid #eee;
+   }
+
+   .question-item {
+       display: flex;
+       align-items: start;
+       margin-bottom: 25px;
+       padding: 20px;
+       background: white;
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+   }
+
+   .question-number {
+       background: #3498db;
+       color: white;
+       width: 30px;
+       height: 30px;
+       border-radius: 50%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-weight: bold;
+       margin-right: 15px;
+       flex-shrink: 0;
+   }
+
+   .question-content {
+       flex-grow: 1;
+   }
+
+   .warning-notice {
+       margin: 25px 0;
+   }
+
+   @media (min-width: 768px) {
+       .example-cards {
+           grid-template-columns: repeat(2, 1fr);
+       }
+   }
+
+   strong {
+       color: #2c3e50;
+   }
+
+   .alert {
+       margin-bottom: 20px;
+   }
+
+   .next-section {
+       text-align: center;
+       margin-top: 20px;
+   }
+</style>
+{{ endblock }}

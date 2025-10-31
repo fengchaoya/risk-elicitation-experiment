@@ -1,0 +1,79 @@
+{{ block title }}
+    Experiment Completed!
+{{ endblock }}
+
+{{ block content }}
+<div class="container">
+    <div class="completion-message">
+        <div class="checkmark-circle">
+            <i class="checkmark">✓</i>
+        </div>
+
+        <h4 class="congratulations">Congratulations!</h4>
+        <p class="message">You have successfully completed the entire experiment!</p>
+
+        <div class="next-steps">
+            <p>Click the "Next" button to view your final payment details.</p>
+        </div>
+    </div>
+
+    {{ next_button }}
+</div>
+
+<style>
+    .container {
+        text-align: center;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .completion-message {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .checkmark-circle {
+        width: 80px;
+        height: 80px;
+        background: #78b13f;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .checkmark {
+        color: white;
+        font-size: 40px;
+        line-height: 80px;
+    }
+
+    .congratulations {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .message {
+        color: #34495e;
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+    .next-steps {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        color: #666;
+    }
+
+    .otree-btn-next {
+        margin-top: 20px;
+    }
+</style>
+{{ endblock }}

@@ -1,0 +1,15 @@
+{{ block title }}Question{{ endblock }}
+{{ block content }}
+    {% if player.round_number < C.NUM_ATTENTION_CHECK_TRIES %}
+        You did not answer the questions correctly.
+        You will now have the chance to read the instructions again.
+        You have {{ C.NUM_ATTENTION_CHECK_TRIES }} attempts to answer the questions in total.
+        {{ next_button }}
+    {% else %}
+        You did not answer the questions correctly {{ C.NUM_ATTENTION_CHECK_TRIES }} times.
+        You cannot continue with the experiment.
+        Please close the experiment now.
+    {% endif %}
+
+
+{{ endblock }}

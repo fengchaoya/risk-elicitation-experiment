@@ -1,0 +1,137 @@
+{{ block title }}
+<h1 align="center">Informed Consent </h1>
+{{ endblock }}
+
+{{ block content }}
+<div class="consent-container">
+    <div class="consent-section">
+        <h5>Purpose and Duration</h5>
+        <p>The purpose of this experiment is to study risk attitudes under different circumstances.
+        It consists of three sections and should take approximately 15 minutes to complete.</p>
+    </div>
+
+    <div class="consent-section">
+        <h5>Voluntary Participation</h5>
+        <p>Your participation in this experiment is completely voluntary, and you can withdraw at any time.
+        We will not disclose any personally identifiable information when we present experiment research findings.</p>
+    </div>
+
+    <div class="consent-section">
+        <h5>Compensation</h5>
+        <p>You will be compensated for participating in this survey. Specifically:
+            <ul>
+                <li>Base payment: $2 for participation</li>
+                <li>Additional bonus: Average of $5 (ranging from $0 to $10) based on your decisions</li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="consent-section">
+        <h5>Data Usage</h5>
+        <p>Information collected for this study may be shared with other researchers and may be used for other studies.
+        These studies may be similar to this study or different. We will ensure that your identity cannot be linked to
+        the information we share. We will not ask for additional permission before sharing the information.</p>
+    </div>
+
+    <div class="consent-section">
+        <h5>Contact Information</h5>
+        <p>If you have questions about the experiment, research methods, or to report a research-related injury, please contact:</p>
+        <ul>
+            <li>Dr. Elizabeth Hoffman at Iowa State University (<a href="mailto:bhoffman@iastate.edu">bhoffman@iastate.edu</a>)</li>
+            <li>Mr. Chaoya Feng at Iowa State University (<a href="mailto:chaoyaf@iastate.edu">chaoyaf@iastate.edu</a>)</li>
+        </ul>
+        <p>You can report any concerns about this study by calling the Compliance and Ethics Hotline at Iowa State University:
+        <strong>(515) 294-7119</strong></p>
+    </div>
+
+    <div class="consent-notice">
+        <div class="alert alert-info" role="alert">
+            <strong>Continuing with this experiment indicates your consent to participate.</strong>
+        </div>
+    </div>
+
+    {{ formfields }}
+
+    <div class="timer-notice">
+        <div class="alert alert-secondary" role="alert">
+            <i class="fas fa-clock"></i> The Next button will appear in <span id="timer">20</span> seconds
+        </div>
+    </div>
+
+    <button class="btn btn-primary" style="display: none" id="next-button">Next</button>
+</div>
+
+<style>
+    .consent-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .consent-section {
+        margin-bottom: 25px;
+        padding: 15px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .consent-section h5 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #eee;
+    }
+
+    .consent-section ul {
+        padding-left: 20px;
+        margin-top: 10px;
+    }
+
+    .consent-section li {
+        margin-bottom: 5px;
+    }
+
+    .consent-notice {
+        margin: 30px 0;
+        text-align: center;
+    }
+
+    .timer-notice {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    a {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    #next-button {
+        display: block;
+        margin: 20px auto;
+    }
+</style>
+
+<script>
+    // 倒计时功能
+    let timeLeft = 20;
+    const timerElement = document.getElementById('timer');
+    const nextButton = document.getElementById('next-button');
+
+    const timer = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            nextButton.style.display = 'block';
+            document.querySelector('.timer-notice').style.display = 'none';
+        }
+    }, 1000);
+</script>
+{{ endblock }}

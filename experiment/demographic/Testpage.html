@@ -1,0 +1,86 @@
+{% extends "InformConsent.html" %}
+{% load otree %}
+{% block title %}
+Welcome
+{% endblock %}
+
+{% block content %}
+
+<html>
+
+
+<script>
+
+    $('form').submit(function(e) {
+e.preventDefault();
+// or return false;
+});
+
+var duration=900;
+var dt1= new Date()
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+// Get today's date and time
+var dt2 = new Date();
+
+timer=diff_seconds(dt2,dt1)
+
+if(timer>300){
+
+$('form').submit( function(ev){
+$(this).unbind('submit').submit()
+}); }
+
+
+
+// Display the result in the element with id="demo"
+document.getElementById("demo").innerHTML = "Remaining Time= "+(duration-timer);
+// If the count down is finished, write some text
+if (timer > duration-1) {
+clearInterval(x);
+document.getElementById("myCheck").click();
+}
+}, 1000);
+
+function diff_seconds(dt2, dt1)
+{
+var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+return Math.abs(Math.round(diff));
+
+}
+
+    </script>
+
+
+
+  <style>
+          .page-header {
+        border-bottom: none;
+        display : none;
+    }
+
+  </style>
+
+  <body  style="background-color:antiquewhite;">
+<br><br>
+       <p style="position: relative;  left: 40%;  top: 5%; font-size:32px;">Welcome!</p>
+       <br><br>
+       <p style="font-size: 20px;text-align:justify">You are about to participate in a decision making experiment. Please read the instructions carefully before starting the experiment.
+           Please do not communicate with other participants during the experiment. Experimenters will answer your questions before and during the experiment.
+           Please raise your hand whenever you would like to ask a question, or you need assistance of any kind. The experiment will last 90 minutes.</p>
+       <br>
+
+       <button id="myCheck" style="height:40px;color:white;background-color:dodgerblue;position: relative;  padding-left: 15px;padding-right: 15px;left: 92%;font-size:20px"> Start</button>
+     <div  id="demo"></div>
+
+<button  > Go next page</button>
+
+
+
+  </body>
+
+</html>
+
+{% endblock %}

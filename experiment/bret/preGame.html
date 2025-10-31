@@ -1,0 +1,180 @@
+{{ block title }}
+   Ready to Start the Multi-Choice Task
+{{ endblock }}
+
+{{ block content }}
+<div class="ready-container">
+   <!-- 完成提示 -->
+   <div class="completion-banner">
+       <h5>Attention Check Questions Completed</h5>
+   </div>
+
+   <!-- 任务预览 -->
+   <div class="task-preview">
+       <div class="alert alert-info">
+           <strong>On the next page, you will face the formal multi-choice task for this section of the experiment.</strong>
+       </div>
+   </div>
+
+   <!-- 操作说明 -->
+   <div class="instruction-card">
+       <h6><i class="fas fa-mouse-pointer"></i> How to Complete the Task</h6>
+       <div class="steps">
+           <div class="step">
+               <div class="step-number">1</div>
+               <div class="step-text">Click on the boxes you wish to open</div>
+           </div>
+           <div class="step">
+               <div class="step-number">2</div>
+               <div class="step-text">Watch the counter below the matrix showing your selections</div>
+           </div>
+           <div class="step">
+               <div class="step-number">3</div>
+               <div class="step-text">Once finished, click the "Stop" and "Solve" buttons beneath the matrix</div>
+           </div>
+       </div>
+   </div>
+
+   <!-- 准备开始 -->
+   <div class="start-section">
+       <p class="ready-text">When you are ready to proceed, click "Next" to begin the task.</p>
+
+       <div class="timer-box" id="timer-text">
+           <i class="fas fa-clock"></i> The Next button will appear in <span id="timer">5</span> seconds
+       </div>
+
+       <button class="btn btn-primary btn-lg" style="display: none" id="next-button">Next</button>
+   </div>
+</div>
+
+<style>
+   .ready-container {
+       max-width: 700px;
+       margin: 0 auto;
+       padding: 20px;
+   }
+
+   .completion-banner {
+       text-align: center;
+       margin-bottom: 30px;
+       padding: 20px;
+       background: #f8f9fa;
+       border-radius: 8px;
+   }
+
+   .check-icon {
+       color: #28a745;
+       font-size: 40px;
+       margin-bottom: 10px;
+   }
+
+   .task-preview {
+       margin-bottom: 25px;
+   }
+
+   .instruction-card {
+       background: white;
+       padding: 20px;
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       margin-bottom: 25px;
+   }
+
+   .steps {
+       margin-top: 15px;
+   }
+
+   .step {
+       display: flex;
+       align-items: center;
+       margin: 15px 0;
+       padding: 10px;
+       background: #f8f9fa;
+       border-radius: 5px;
+       transition: transform 0.2s;
+   }
+
+   .step:hover {
+       transform: translateX(5px);
+   }
+
+   .step-number {
+       background: #3498db;
+       color: white;
+       width: 25px;
+       height: 25px;
+       border-radius: 50%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       margin-right: 15px;
+       font-weight: bold;
+   }
+
+   .step-text {
+       flex-grow: 1;
+   }
+
+   .start-section {
+       text-align: center;
+       margin-top: 30px;
+   }
+
+   .ready-text {
+       font-size: 1.1em;
+       color: #2c3e50;
+       margin-bottom: 20px;
+   }
+
+   .timer-box {
+       display: inline-block;
+       padding: 10px 20px;
+       background: #f8f9fa;
+       border-radius: 5px;
+       margin-bottom: 20px;
+   }
+
+   .fas {
+       margin-right: 8px;
+   }
+
+   @keyframes pulse {
+       0% { transform: scale(1); }
+       50% { transform: scale(1.05); }
+       100% { transform: scale(1); }
+   }
+
+   #next-button {
+       animation: pulse 2s infinite;
+   }
+
+   @media (max-width: 576px) {
+       .step {
+           flex-direction: column;
+           text-align: center;
+       }
+
+       .step-number {
+           margin: 0 0 10px 0;
+       }
+   }
+</style>
+
+<script>
+   let timeLeft = 5;
+   const timerElement = document.getElementById('timer');
+   const nextButton = document.getElementById('next-button');
+   const timerText = document.getElementById('timer-text');
+
+   const timer = setInterval(() => {
+       timeLeft--;
+       timerElement.textContent = timeLeft;
+
+       if (timeLeft <= 0) {
+           clearInterval(timer);
+           nextButton.style.display = 'block';
+           timerText.style.display = 'none';
+       }
+   }, 1000);
+</script>
+{{ endblock }}

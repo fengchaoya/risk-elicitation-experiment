@@ -1,0 +1,177 @@
+{{ block title }}
+    <h1 align="center">Introduction to the Experiment</h1>
+{{ endblock }}
+
+{{ block content }}
+<div class="introduction-container">
+    <!-- 实验结构部分 -->
+    <div class="content-section">
+        <h5 class="section-title"><i class="fas fa-tasks"></i> Experiment Structure</h5>
+        <p>The experiment consists of three parts:</p>
+        <div class="structure-list">
+            <div class="step-item">
+                <span class="step-number">1</span>
+                <span class="step-text">A demographic survey</span>
+            </div>
+            <div class="step-item">
+                <span class="step-number">2</span>
+                <span class="step-text">A binary-choice task</span>
+            </div>
+            <div class="step-item">
+                <span class="step-number">3</span>
+                <span class="step-text">A multi-choice task</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 支付说明部分 -->
+    <div class="content-section">
+        <h5 class="section-title"><i class="fas fa-dollar-sign"></i> Payment Structure</h5>
+        <div class="payment-info">
+            <div class="payment-item">
+                <h6>1. Participation Fee</h6>
+                <p>You will receive a <strong>$2 payment</strong> for completing the entire experiment.</p>
+            </div>
+            <div class="payment-item">
+                <h6>2. Decision Bonus</h6>
+                <p>You will receive an additional bonus payment based on your choices in the binary-choice and multi-choice tasks.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注意力检查说明 -->
+    <div class="content-section">
+        <h5 class="section-title"><i class="fas fa-exclamation-circle"></i> Attention Checks</h5>
+        <div class="attention-info">
+            <p>Throughout the experiment, you will encounter attention check questions to ensure careful participation. These checks will be:</p>
+            <ul>
+                <li>Instructions to select specific response options</li>
+                <li>Straightforward questions with obvious answers</li>
+            </ul>
+
+            <div class="alert alert-warning" role="alert">
+                <strong><i class="fas fa-exclamation-triangle"></i> Important:</strong>
+                <p class="mb-0">Failing to answer attention check questions correctly may result in your responses being disqualified for the Decision Bonus.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 开始按钮部分 -->
+    <div class="start-section">
+        <p class="text-center">Click "Next" to begin the demographic survey.</p>
+
+        <div class="timer-notice alert alert-secondary text-center">
+            <i class="fas fa-clock"></i> The Next button will appear in <span id="timer">20</span> seconds
+        </div>
+
+        <button class="btn btn-primary btn-lg" style="display: none" id="next-button">Next</button>
+    </div>
+</div>
+
+<style>
+    .introduction-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .content-section {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+        color: #2c3e50;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .structure-list {
+        padding: 10px 0;
+    }
+
+    .step-item {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+    }
+
+    .step-number {
+        background: #3498db;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-weight: bold;
+    }
+
+    .payment-info {
+        display: grid;
+        gap: 20px;
+    }
+
+    .payment-item {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .payment-item h6 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .attention-info ul {
+        padding-left: 20px;
+        margin: 15px 0;
+    }
+
+    .attention-info li {
+        margin-bottom: 8px;
+    }
+
+    .start-section {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .timer-notice {
+        margin: 20px auto;
+        max-width: 400px;
+    }
+
+    #next-button {
+        padding: 10px 40px;
+    }
+
+    .alert-warning {
+        border-left: 5px solid #ffc107;
+    }
+</style>
+
+<script>
+    // 倒计时功能
+    let timeLeft = 20;
+    const timerElement = document.getElementById('timer');
+    const nextButton = document.getElementById('next-button');
+
+    const timer = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            nextButton.style.display = 'block';
+            document.querySelector('.timer-notice').style.display = 'none';
+        }
+    }, 1000);
+</script>
+{{ endblock }}

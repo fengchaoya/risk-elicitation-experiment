@@ -1,0 +1,178 @@
+{{ block styles }}
+<link href="{{ static 'bret/css/custom.css' }}" rel="stylesheet"/>
+{{ endblock }}
+
+{{ block title }}
+   Multi-Choice Task Instructions
+{{ endblock }}
+
+{{ block content }}
+<div class="instruction-container">
+   <!-- 任务概述 -->
+   <div class="task-overview">
+       <h5><i class="fas fa-tasks"></i> Task Overview</h5>
+       <p class="lead">This section consists of one decision-making task where you'll choose among 100 options.</p>
+   </div>
+
+   <!-- 详细说明 -->
+   <div class="instruction-details">
+       <div class="instruction-card">
+           <h6><i class="fas fa-th"></i> The Setup</h6>
+           <ul>
+               <li>You will see a matrix of <strong>{{ num_boxes }} boxes</strong></li>
+               <li>99 boxes contain <strong>$0.10 each</strong></li>
+               <li>1 box is <strong>empty</strong> (worth $0)</li>
+               <li>The empty box's location is <strong>random</strong> and unknown</li>
+           </ul>
+       </div>
+
+       <div class="instruction-card">
+           <h6><i class="fas fa-mouse-pointer"></i> Your Task</h6>
+           <ul>
+               <li>Choose how many boxes to collect</li>
+           </ul>
+       </div>
+
+       <div class="instruction-card">
+           <h6><i class="fas fa-dollar-sign"></i> Earnings</h6>
+           <ul>
+               <li>If you collect the empty box: <strong>Earn $0</strong></li>
+               <li>If you avoid the empty box: <strong>Earn $0.10 per collected box</strong></li>
+           </ul>
+       </div>
+   </div>
+
+   <!-- 注意事项 -->
+   <div class="attention-warning">
+       <div class="alert alert-warning">
+           <h6><i class="fas fa-exclamation-triangle"></i> Important Notice</h6>
+           <ul>
+               <li>There will be <strong>three attention check questions</strong> on the next page</li>
+               <li>Incorrect answers will <strong>disqualify you</strong> from earning the bonus payment from this task</li>
+               <li>Take your time to understand the instructions thoroughly</li>
+           </ul>
+       </div>
+   </div>
+
+   <!-- 计时器和按钮 -->
+   <div class="timer-section">
+       <div class="timer-notice alert alert-secondary" id="timer-text">
+           <i class="fas fa-clock"></i> The Next button will appear in <span id="timer">20</span> seconds
+       </div>
+       <button class="btn btn-primary btn-lg" style="display: none" id="next-button">Next</button>
+   </div>
+</div>
+
+<style>
+   .instruction-container {
+       max-width: 800px;
+       margin: 0 auto;
+       padding: 20px;
+   }
+
+   .task-overview {
+       text-align: center;
+       margin-bottom: 30px;
+       padding: 20px;
+       background: #f8f9fa;
+       border-radius: 8px;
+   }
+
+   .lead {
+       color: #2c3e50;
+       font-size: 1.2rem;
+   }
+
+   .instruction-details {
+       display: grid;
+       gap: 20px;
+       margin-bottom: 30px;
+   }
+
+   .instruction-card {
+       background: white;
+       padding: 20px;
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+   }
+
+   .instruction-card h6 {
+       color: #2c3e50;
+       border-bottom: 2px solid #eee;
+       padding-bottom: 10px;
+       margin-bottom: 15px;
+   }
+
+   .instruction-card ul {
+       list-style: none;
+       padding-left: 0;
+   }
+
+   .instruction-card li {
+       margin-bottom: 10px;
+       padding-left: 20px;
+       position: relative;
+   }
+
+   .instruction-card li:before {
+       content: "•";
+       color: #3498db;
+       position: absolute;
+       left: 0;
+   }
+
+   .attention-warning {
+       margin: 30px 0;
+   }
+
+   .attention-warning .alert {
+       border-left: 5px solid #ffc107;
+   }
+
+   .attention-warning ul {
+       margin-bottom: 0;
+   }
+
+   .timer-section {
+       text-align: center;
+       margin-top: 30px;
+   }
+
+   .timer-notice {
+       display: inline-block;
+       margin-bottom: 15px;
+   }
+
+   strong {
+       color: #3498db;
+   }
+
+   .fas {
+       margin-right: 8px;
+   }
+
+   @media (min-width: 768px) {
+       .instruction-details {
+           grid-template-columns: repeat(3, 1fr);
+       }
+   }
+</style>
+
+<script>
+   let timeLeft = 20;
+   const timerElement = document.getElementById('timer');
+   const nextButton = document.getElementById('next-button');
+   const timerText = document.getElementById('timer-text');
+
+   const timer = setInterval(() => {
+       timeLeft--;
+       timerElement.textContent = timeLeft;
+
+       if (timeLeft <= 0) {
+           clearInterval(timer);
+           nextButton.style.display = 'block';
+           timerText.style.display = 'none';
+       }
+   }, 1000);
+</script>
+{{ endblock }}

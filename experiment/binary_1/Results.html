@@ -1,0 +1,173 @@
+{{ block title }}
+   Binary-Choice Task Results
+{{ endblock }}
+
+{{ block content }}
+<div class="results-container">
+   <div class="result-card">
+       <div class="completion-icon">
+           <i class="fas fa-check-circle"></i>
+       </div>
+
+       <h5>Binary-Choice Task Completed</h5>
+       <h6> The program rolls the ten-sided die twice to determine your payoff for the task. </h6>
+       <!-- 掷骰子过程说明 -->
+       <div class="process-section">
+           <div class="step">
+               <h6></h6>
+               <div class="dice-result">
+                   <i class="fas fa-dice"></i>
+                   <span>Result of the first roll: <strong>2</strong></span>
+               </div>
+               <p>Question 2 was selected to determine your payoff</p>
+           </div>
+
+           <!-- 选择回顾 -->
+           <div class="choice-review">
+               <h6>Your Choice in Question 2:</h6>
+               <div class="option-box">
+                   <div class="option-label">{{ player_choice }}</div>
+                   <div class="option-details">
+                       {% if player_choice == "Option A" %}
+                       <div class="outcome-row">
+                           <span>If die shows 1-2:</span>
+                           <strong>$5.00</strong>
+                       </div>
+                       <div class="outcome-row">
+                           <span>If die shows 3-10:</span>
+                           <strong>$4.00</strong>
+                       </div>
+                       {% else %}
+                       <div class="outcome-row">
+                           <span>If die shows 1-2:</span>
+                           <strong>$9.63</strong>
+                       </div>
+                       <div class="outcome-row">
+                           <span>If die shows 3-10:</span>
+                           <strong>$0.25</strong>
+                       </div>
+                       {% endif %}
+                   </div>
+               </div>
+           </div>
+
+           <!-- 第二次掷骰子 -->
+           <div class="step">
+               <div class="dice-result">
+                   <i class="fas fa-dice"></i>
+                   <span>Result of the second roll: <strong>{{ player_dice2 }}</strong></span>
+               </div>
+           </div>
+       </div>
+
+       <!-- 最终支付 -->
+       <div class="final-payoff">
+           <h6>Your Final Payoff of the Binary-Choice Task</h6>
+           <div class="amount">{{ payoff }}</div>
+       </div>
+
+       {{ next_button }}
+   </div>
+</div>
+
+<style>
+   .results-container {
+       max-width: 600px;
+       margin: 40px auto;
+       padding: 20px;
+   }
+
+   .result-card {
+       background: white;
+       padding: 30px;
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+   }
+
+   .completion-icon {
+       text-align: center;
+       color: #28a745;
+       font-size: 48px;
+       margin-bottom: 20px;
+   }
+
+   h5 {
+       text-align: center;
+       color: #2c3e50;
+       margin-bottom: 25px;
+   }
+
+   .process-section {
+       margin: 25px 0;
+   }
+
+   .step {
+       background: #f8f9fa;
+       padding: 15px;
+       border-radius: 5px;
+       margin-bottom: 20px;
+   }
+
+   .dice-result {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       padding: 10px;
+       background: white;
+       border-radius: 4px;
+       margin: 10px 0;
+   }
+
+   .dice-result i {
+       color: #3498db;
+   }
+
+   .choice-review {
+       margin: 20px 0;
+   }
+
+   .option-box {
+       border: 1px solid #dee2e6;
+       border-radius: 5px;
+       padding: 15px;
+       margin: 10px 0;
+   }
+
+   .option-label {
+       font-weight: bold;
+       color: #3498db;
+       margin-bottom: 10px;
+       padding-bottom: 5px;
+       border-bottom: 1px solid #eee;
+   }
+
+   .outcome-row {
+       display: flex;
+       justify-content: space-between;
+       padding: 8px;
+       background: #f8f9fa;
+       border-radius: 3px;
+       margin: 5px 0;
+   }
+
+   .final-payoff {
+       text-align: center;
+       margin-top: 30px;
+       padding: 20px;
+       background: #e8f4fd;
+       border-radius: 5px;
+   }
+
+   .final-payoff .amount {
+       font-size: 24px;
+       font-weight: bold;
+       color: #2c3e50;
+       margin-top: 10px;
+   }
+
+   h6 {
+       color: #2c3e50;
+       margin-bottom: 15px;
+   }
+</style>
+{{ endblock }}

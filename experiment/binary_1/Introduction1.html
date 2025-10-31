@@ -1,0 +1,197 @@
+{{ block title }}
+   Binary-Choice Task Introduction
+{{ endblock }}
+
+{{ block content }}
+<div class="intro-container">
+   <!-- 任务概述 -->
+   <div class="task-overview">
+       <div class="icon-header">
+           <i class="fas fa-random fa-2x"></i>
+           <h5>Binary-Choice Decision Task</h5>
+       </div>
+       <div class="description-box">
+           <p class="lead">In this section, you will make a series of decisions between two options:</p>
+           <div class="options-preview">
+               <div class="option-box">
+                   <span class="option-label">Option A</span>
+               </div>
+               <div class="option-divider">or</div>
+               <div class="option-box">
+                   <span class="option-label">Option B</span>
+               </div>
+           </div>
+           <div class="task-details">
+               <div class="detail-item">
+                   <i class="fas fa-check-circle"></i>
+                   <span>You will make ten different choices</span>
+               </div>
+               <div class="detail-item">
+                   <i class="fas fa-info-circle"></i>
+                   <span>Each choice will be between two options</span>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <!-- 预览提示 -->
+   <div class="preview-notice">
+       <div class="alert alert-info">
+           <i class="fas fa-eye"></i>
+           <p>On the next two pages, we will:</p>
+           <ul>
+               <li>Show you what the questions look like</li>
+               <li>Explain how the outcome is determined</li>
+           </ul>
+       </div>
+   </div>
+
+   <!-- 计时器和按钮 -->
+   <div class="timer-section">
+       <div class="timer-notice" id="timer-text">
+           <i class="fas fa-clock"></i> The Next button will appear in <span id="timer">3</span> seconds
+       </div>
+       <button class="btn btn-primary btn-lg" style="display: none" id="next-button">Next</button>
+   </div>
+</div>
+
+<style>
+   .intro-container {
+       max-width: 700px;
+       margin: 0 auto;
+       padding: 20px;
+   }
+
+   .task-overview {
+       background: white;
+       border-radius: 8px;
+       padding: 25px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       margin-bottom: 30px;
+   }
+
+   .icon-header {
+       text-align: center;
+       margin-bottom: 20px;
+       color: #3498db;
+   }
+
+   .icon-header h5 {
+       margin-top: 10px;
+       color: #2c3e50;
+   }
+
+   .description-box {
+       text-align: center;
+   }
+
+   .lead {
+       font-size: 1.1em;
+       color: #2c3e50;
+       margin-bottom: 20px;
+   }
+
+   .options-preview {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 15px;
+       margin: 25px 0;
+   }
+
+   .option-box {
+       background: #f8f9fa;
+       padding: 15px 30px;
+       border-radius: 5px;
+       border: 2px solid #3498db;
+       transition: transform 0.2s;
+   }
+
+   .option-box:hover {
+       transform: scale(1.05);
+   }
+
+   .option-divider {
+       font-weight: bold;
+       color: #666;
+   }
+
+   .option-label {
+       font-weight: bold;
+       color: #3498db;
+   }
+
+   .task-details {
+       margin-top: 20px;
+   }
+
+   .detail-item {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       margin: 10px 0;
+       padding: 8px;
+       background: #f8f9fa;
+       border-radius: 5px;
+   }
+
+   .detail-item i {
+       color: #3498db;
+   }
+
+   .preview-notice {
+       margin: 25px 0;
+   }
+
+   .preview-notice ul {
+       margin: 10px 0 0 0;
+       padding-left: 20px;
+   }
+
+   .preview-notice li {
+       margin: 5px 0;
+   }
+
+   .timer-section {
+       text-align: center;
+       margin-top: 30px;
+   }
+
+   .timer-notice {
+       display: inline-block;
+       padding: 10px 20px;
+       background: #f8f9fa;
+       border-radius: 5px;
+       margin-bottom: 15px;
+   }
+
+   @media (max-width: 576px) {
+       .options-preview {
+           flex-direction: column;
+           gap: 10px;
+       }
+
+       .option-divider {
+           transform: rotate(90deg);
+       }
+   }
+</style>
+
+<script>
+   let timeLeft = 3;
+   const timerElement = document.getElementById('timer');
+   const nextButton = document.getElementById('next-button');
+   const timerText = document.getElementById('timer-text');
+
+   const timer = setInterval(() => {
+       timeLeft--;
+       timerElement.textContent = timeLeft;
+
+       if (timeLeft <= 0) {
+           clearInterval(timer);
+           nextButton.style.display = 'block';
+           timerText.style.display = 'none';
+       }
+   }, 1000);
+</script>
+{{ endblock }}
