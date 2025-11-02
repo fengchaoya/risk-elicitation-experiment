@@ -42,8 +42,8 @@ To run this project locally, you will need to have Python and oTree installed.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/your-repository-name.git
-    cd your-repository-name
+    git clone https://github.com/fengchaoya/risk-elicitation-experiment.git
+    cd risk-elicitation-experiment
     ```
 
 2.  **Create and activate a virtual environment:**
