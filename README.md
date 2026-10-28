@@ -25,7 +25,7 @@ The project also includes a demographics survey and a payment module that random
 This oTree project is organized into several apps:
 
 *   `demographic`: A brief survey to collect participants' demographic information.
-*   `binary_1` / `binary_2`: These apps implement the Binary-Choice (MPL) task. The two versions likely correspond to the two experimental sessions with different task orderings.
+*   `binary_1` / `binary_2`: The same Binary-Choice (MPL) task, placed before and after the BRET. Each participant sees only one of them: `demographic` assigns participants alternately to an MPL-first or a BRET-first order, and `app_after_this_page` routes them accordingly.
 *   `bret`: Implements the Multi-Choice (Bomb Risk Elicitation Task).
 *   `payment`: Calculates the final payoff for each participant based on one randomly selected decision and displays the result.
 
